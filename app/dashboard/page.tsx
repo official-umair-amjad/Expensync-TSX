@@ -14,7 +14,7 @@ interface Group {
 
 interface Membership {
   group_id: string;
-  groups: Group;
+  groups: Group[]; // Updated to be an array of groups
 }
 
 export default function Dashboard() {
@@ -31,7 +31,6 @@ export default function Dashboard() {
     if (!user) {
       router.push("/");
     } else {
-      console.log("userID:", user.id);
       fetchGroups();
     }
   }, [user, router]);
@@ -49,17 +48,11 @@ export default function Dashboard() {
       return;
     }
 
-    setGroups(
-      data
-        .map((entry) => {
-          if (!entry.groups || !Array.isArray(entry.groups)) return null;
-          return entry.groups.filter((group): group is Group =>
-            group && typeof group.id === "string" && typeof group.name === "string"
-          );
-        })
-        .flat() // Flatten the nested arrays
-        .filter(Boolean) // Remove null/undefined values
-    );;
+    // data is an array of memberships where each membership.groups is an array of Group.
+    // Flatten these arrays to get a single array of Group.
+    const memberships = data as Membership[];
+    const allGroups = memberships.map((entry) => entry.groups).flat();
+    setGroups(allGroups);
   };
 
   const handleAddGroup = async (e: React.FormEvent) => {
@@ -90,6 +83,8 @@ export default function Dashboard() {
       return;
     }
 
+    // Since data[0] is the new group inserted in the groups table,
+    // add it directly to your groups state.
     setGroups([...groups, data[0]]);
     setNewGroup({ name: "", description: "" });
     setShowAddGroup(false);
@@ -108,7 +103,6 @@ export default function Dashboard() {
         >
           Logout
         </button>
-
       </header>
       <section className="mt-8 absolute right-10">
         <button
@@ -124,20 +118,28 @@ export default function Dashboard() {
           <h2 className="text-xl font-semibold mb-4">Create a New Group</h2>
           <form onSubmit={handleAddGroup} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">Group Name</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Group Name
+              </label>
               <input
                 type="text"
                 value={newGroup.name}
-                onChange={(e) => setNewGroup({ ...newGroup, name: e.target.value })}
+                onChange={(e) =>
+                  setNewGroup({ ...newGroup, name: e.target.value })
+                }
                 required
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Description</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Description
+              </label>
               <textarea
                 value={newGroup.description}
-                onChange={(e) => setNewGroup({ ...newGroup, description: e.target.value })}
+                onChange={(e) =>
+                  setNewGroup({ ...newGroup, description: e.target.value })
+                }
                 required
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
               ></textarea>
@@ -164,14 +166,16 @@ export default function Dashboard() {
                 className="flex bg-white px-4 py-2 rounded shadow hover:shadow-lg transition items-center"
               >
                 <div className="w-3/4">
-
-                  <h3 className="text-xl font-bold text-indigo-500">{group.name}</h3>
+                  <h3 className="text-xl font-bold text-indigo-500">
+                    {group.name}
+                  </h3>
                   <p className="mb-2 text-gray-600">{group.description}</p>
                 </div>
-
                 <div className="w-1/4 justify-center">
-
-                  <Link href={`/groups/${group.id}`} className="bg-indigo-500 hover:bg-indigo-700 text-white p-2 rounded">
+                  <Link
+                    href={`/groups/${group.id}`}
+                    className="bg-indigo-500 hover:bg-indigo-700 text-white p-2 rounded"
+                  >
                     Expenses
                   </Link>
                 </div>
