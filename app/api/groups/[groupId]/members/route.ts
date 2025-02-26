@@ -6,7 +6,7 @@ export async function GET(req: NextRequest) {
     // Extract groupId from request URL
     const url = new URL(req.url);
     const segments = url.pathname.split("/");
-    const groupId = segments[segments.length - 1]; // Get the last segment
+    const groupId = segments[segments.length - 2]; 
 
     if (!groupId) {
       return NextResponse.json({ error: "Group ID is required" }, { status: 400 });
