@@ -53,7 +53,7 @@ I have to say, leveraging AI—specifically ChatGPT—was a major boost to my pr
 
 - **Boilerplate Code on Demand:**
 
-Sometimes, I would write the initial structure of a file and then ask ChatGPT for a boilerplate snippet. This gave me a fast, working starting point that saved me hours of manually writing repetitive code. It was like having a virtual co-developer who could instantly provide the skeleton for new modules.
+   Sometimes, I would write the initial structure of a file and then ask ChatGPT for a boilerplate snippet. This gave me a fast, working starting point that saved me hours of manually writing repetitive code. It was like having a virtual co-developer who could instantly provide the skeleton for new modules.
 
 - **Rapid Adjustments and Debugging:**
 
