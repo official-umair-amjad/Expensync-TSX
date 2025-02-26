@@ -1,11 +1,5 @@
 import { supabase } from "../../../../utils/supabaseClient";
-import { NextRequest } from "next/server";
-
-interface Params {
-  params: {
-    expenseId: string;
-  };
-}
+import { NextRequest, NextResponse } from "next/server";
 
 interface ExpenseData {
   user_id: string;
@@ -16,14 +10,14 @@ interface ExpenseData {
 }
 
 export async function PUT(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { expenseId: string } }
 ) {
   try {
     const { expenseId } = params;
-    const body = await request.json();
+    const body: Partial<ExpenseData> = await request.json();
 
-    // Perform update logic (example using Supabase)
+    // Perform update logic using Supabase
     const { data, error } = await supabase
       .from("expenses")
       .update(body)
@@ -31,11 +25,12 @@ export async function PUT(
       .select();
 
     if (error) {
-      return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    return new Response(JSON.stringify(data), { status: 200 });
-  } catch (error) {
-    return new Response(JSON.stringify({ error: "Something went wrong" }), { status: 500 });
+    return NextResponse.json(data, { status: 200 });
+  } catch (error: unknown) {
+    console.error("Error updating expense:", error);
+    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
