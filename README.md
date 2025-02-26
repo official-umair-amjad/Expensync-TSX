@@ -6,9 +6,9 @@ Expensync-TSX is a modern expense tracking application built with Next.js 15+ an
 
 Below are three screenshots demonstrating different parts of the app:
 
-![Dashboard Screen](./screenshots/screen1.png)
-![Group Details Screen](./screenshots/screen2.png)
-![Mobile View / Add Expense](./screenshots/screen3.png)
+![Dashboard Screen](/public/ss1.png)
+![Group Details Screen](/public/ss2.png)
+![Mobile View / Add Expense](/public/ss3.png)
 
 ## Local Setup
 
