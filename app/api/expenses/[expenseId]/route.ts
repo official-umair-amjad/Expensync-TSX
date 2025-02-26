@@ -7,13 +7,15 @@ export async function PUT(request: NextRequest) {
     const url = new URL(request.url);
     const segments = url.pathname.split("/");
     const expenseId = segments[segments.length - 1]; 
-
+    console.log(expenseId)
+    
     if (!expenseId) {
       return NextResponse.json({ error: "Expense ID is required" }, { status: 400 });
     }
-
+    
     const body = await request.json();
-
+    console.log(body)
+    
     // Perform update logic using Supabase
     const { data, error } = await supabase
       .from("expenses")
