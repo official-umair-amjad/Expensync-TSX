@@ -37,7 +37,7 @@ export async function DELETE(request: NextRequest) {
     // Extract expenseId from the request URL
     const url = new URL(request.url);
     const segments = url.pathname.split("/");
-    const expenseId = segments[segments.length - 2]; // Get the last segment
+    const expenseId = segments[segments.length - 1]; // Get the last segment
 
     if (!expenseId) {
       return NextResponse.json({ error: "Expense ID is required" }, { status: 400 });
