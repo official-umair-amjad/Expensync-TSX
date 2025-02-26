@@ -1,7 +1,9 @@
 # Expensync-TSX
 
 Expensync-TSX is a modern expense tracking application built with Next.js 15+ and TypeScript. The project features a clean UI, API routes integrated with Supabase, and a responsive design optimized for both desktop and mobile devices.
+
 Project is LIVE @ https://expensync-tsx.vercel.app/
+
 ## Screenshots
 
 Below are three screenshots demonstrating different parts of the app:
