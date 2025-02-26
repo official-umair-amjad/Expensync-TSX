@@ -129,25 +129,25 @@ export default function GroupDetails() {
     }
   };
 
-  const handleRemoveMember = async (userId: string) => {
-    try {
-      const response = await fetch(`/api/groups/${groupId}/members/${userId}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      });
-      if (response.ok) {
-        // Remove the member from the local state so the UI updates immediately
-        setGroupMembers((prevMembers) =>
-          prevMembers.filter((member) => member.user_id !== userId)
-        );
-        console.log(`Member ${userId} removed successfully.`);
-      } else {
-        console.error("Failed to remove member.");
-      }
-    } catch (error) {
-      console.error("Error removing member:", error);
-    }
-  };
+  // const handleRemoveMember = async (userId: string) => {
+  //   try {
+  //     const response = await fetch(`/api/groups/${groupId}/members/${userId}`, {
+  //       method: "DELETE",
+  //       headers: { "Content-Type": "application/json" },
+  //     });
+  //     if (response.ok) {
+  //       // Remove the member from the local state so the UI updates immediately
+  //       setGroupMembers((prevMembers) =>
+  //         prevMembers.filter((member) => member.user_id !== userId)
+  //       );
+  //       console.log(`Member ${userId} removed successfully.`);
+  //     } else {
+  //       console.error("Failed to remove member.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error removing member:", error);
+  //   }
+  // };
 
   // Combine user IDs from expenses and group members for a complete list.
   const fetchUserDetails = async (expenses: Expense[], members: GroupMember[]) => {
@@ -360,7 +360,6 @@ export default function GroupDetails() {
           <div className="flex flex-wrap gap-2 mt-2">
             {(groupMembers || []).map((member) => {
               const userObj = userDetails[member.user_id];
-              console.log("member",member.user_id)
               return (
                 <div
                   key={member.user_id}
