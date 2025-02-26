@@ -20,17 +20,18 @@ Follow these steps to run the project on your local machine:
    git clone https://github.com/your-username/Expensync-TSX.git
    cd Expensync-TSX
    ```
-**Install dependencies:**
+2. **Install dependencies:**
 
 ```bash
 Copy
 Edit
 npm install
 ```
-**Set up environment variables:**
+3. **Set up environment variables:**
 
 Create a .env.local file in the root of the project and add your Supabase credentials along with any other necessary variables. For example:
-```env
+env
+```bash
 Copy
 Edit
 NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-url.supabase.co
