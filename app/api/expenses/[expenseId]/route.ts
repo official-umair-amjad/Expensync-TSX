@@ -6,7 +6,7 @@ export async function PUT(request: NextRequest) {
     // Extract expenseId from the request URL
     const url = new URL(request.url);
     const segments = url.pathname.split("/");
-    const expenseId = segments[segments.length - 2]; 
+    const expenseId = segments[segments.length - 1]; 
 
     if (!expenseId) {
       return NextResponse.json({ error: "Expense ID is required" }, { status: 400 });
