@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import {supabase} from ../../../../../utils/supabaseClient
+import { supabase } from "../../../../../../utils/supabaseClient";
 
 export async function DELETE(req: NextRequest): Promise<NextResponse> {
   try {
