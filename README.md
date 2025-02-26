@@ -31,19 +31,18 @@ Follow these steps to run the project on your local machine:
 
 3. **Set up environment variables:**
 
-Create a .env.local file in the root of the project and add your Supabase credentials along with any other necessary variables. For example:
-env
-   ```bash
+   Create a .env.local file in the root of the project and add your Supabase credentials along with any other necessary variables. For example:
+   ```env
    NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-url.supabase.co
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
    ```
 
-4.**Run the development server:**
+4. **Run the development server:**
 
    ```bash
    npm run dev
    ```
-Your app should now be running on http://localhost:3000.
+   Your app should now be running on http://localhost:3000.
 
 ## How This Project Was Built
 This project was developed with a strong emphasis on modern web development practices using Next.js 15+ and TypeScript. Supabase is used for backend services, and API routes handle the logic for groups, expenses, and memberships. The design is fully responsive, ensuring a seamless user experience across various devices.
