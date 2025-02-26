@@ -15,43 +15,27 @@ interface ExpenseData {
   date: string;
 }
 
-export async function PUT(req: NextRequest, { params }: Params) {
+export async function PUT(
+  request: Request,
+  { params }: { params: { expenseId: string } }
+) {
   try {
     const { expenseId } = params;
-    const body: ExpenseData = await req.json();
-    const { user_id, description, amount, category, date } = body;
+    const body = await request.json();
 
-    const { error } = await supabase
+    // Perform update logic (example using Supabase)
+    const { data, error } = await supabase
       .from("expenses")
-      .update({ description, amount, category, date })
+      .update(body)
       .eq("id", expenseId)
-      .eq("user_id", user_id); // Only allow the creator to edit
+      .select();
 
-    if (error) throw error;
+    if (error) {
+      return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    }
 
-    return new Response(JSON.stringify({ message: "Expense updated" }), { status: 200 });
-  } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
-  }
-}
-
-export async function DELETE(req: NextRequest, { params }: Params) {
-  try {
-    const { expenseId } = params;
-    const { user_id }: { user_id: string } = await req.json();
-
-    console.log(expenseId);
-
-    const { error } = await supabase
-      .from("expenses")
-      .delete()
-      .eq("id", expenseId)
-      .eq("user_id", user_id); // Only allow the creator to delete
-
-    if (error) throw error;
-
-    return new Response(JSON.stringify({ message: "Expense deleted" }), { status: 200 });
-  } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    return new Response(JSON.stringify(data), { status: 200 });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: "Something went wrong" }), { status: 500 });
   }
 }
