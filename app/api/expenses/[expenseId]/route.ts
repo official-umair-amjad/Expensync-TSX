@@ -6,7 +6,7 @@ export async function PUT(request: NextRequest) {
     // Extract expenseId from the request URL
     const url = new URL(request.url);
     const segments = url.pathname.split("/");
-    const expenseId = segments[segments.length - 1]; // Get the last segment
+    const expenseId = segments[segments.length - 2]; 
 
     if (!expenseId) {
       return NextResponse.json({ error: "Expense ID is required" }, { status: 400 });
@@ -28,6 +28,35 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
     console.error("Error updating expense:", error);
+    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    // Extract expenseId from the request URL
+    const url = new URL(request.url);
+    const segments = url.pathname.split("/");
+    const expenseId = segments[segments.length - 2]; // Get the last segment
+
+    if (!expenseId) {
+      return NextResponse.json({ error: "Expense ID is required" }, { status: 400 });
+    }
+
+    // Perform delete logic using Supabase
+    const { data, error } = await supabase
+      .from("expenses")
+      .delete()
+      .eq("id", expenseId)
+      .select();
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ message: "Expense deleted successfully", data }, { status: 200 });
+  } catch (error) {
+    console.error("Error deleting expense:", error);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
