@@ -67,9 +67,6 @@ Contributions are welcome! If you have suggestions, improvements, or fixes, plea
 ## License
 This project is licensed under the MIT License.
 
-```vbnet
-Copy
-Edit
-
-Simply copy this text, paste it into your favorite text editor, and save it as `README.md` in your pro
-```
+   ```vbnet
+   Simply copy this text, paste it into your favorite text editor, and save it as `README.md` in your project
+   ```
