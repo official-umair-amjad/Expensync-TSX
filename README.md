@@ -57,15 +57,15 @@ Sometimes, I would write the initial structure of a file and then ask ChatGPT fo
 
 - **Rapid Adjustments and Debugging:**
 
-During development, I often ran into small errors or needed to tweak a particular piece of logic. Instead of scouring documentation for long periods, I would quickly describe the issue to ChatGPT. The AI offered immediate suggestions and adjustments, which I could test and iterate on. This not only sped up debugging but also kept the development flow smooth and uninterrupted.
+      During development, I often ran into small errors or needed to tweak a particular piece of logic. Instead of scouring documentation for long periods, I would quickly describe the issue to ChatGPT. The AI offered immediate suggestions and adjustments, which I could test and iterate on. This not only sped up debugging but also kept the development flow smooth and          uninterrupted.
 
 - **Learning on the Fly:**
 
-There were instances when I wasn’t fully clear about a new concept or a method in Next.js or TypeScript. ChatGPT provided clear explanations and examples, helping me understand and integrate these concepts effectively. It served as a quick reference guide, making learning both accessible and enjoyable.
+      There were instances when I wasn’t fully clear about a new concept or a method in Next.js or TypeScript. ChatGPT provided clear explanations and examples, helping me understand and       integrate these concepts effectively. It served as a quick reference guide, making learning both accessible and enjoyable.
 
 - **Hands-On Code Tweaks:**
 
-Although ChatGPT often gave me a strong starting point, its suggestions sometimes needed further tweaking to perfectly fit the context of my project. I reviewed and customized the AI-generated code to ensure it worked seamlessly within my codebase. This balance between automation and manual intervention enriched my coding experience and improved my skills.
+      Although ChatGPT often gave me a strong starting point, its suggestions sometimes needed further tweaking to perfectly fit the context of my project. I reviewed and customized the AI-generated code to ensure it worked seamlessly within my codebase. This balance between automation and manual intervention enriched my coding experience and improved my skills.
 
 Overall, using AI was a truly positive experience. It didn’t replace my own coding but rather complemented it by handling boilerplate, expediting fixes, and offering fresh perspectives on problems. The result was a more efficient development process and a project that I’m proud of.
 
