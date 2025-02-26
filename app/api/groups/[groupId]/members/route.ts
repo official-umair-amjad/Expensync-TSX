@@ -1,20 +1,15 @@
 import { supabase } from "../../../../../utils/supabaseClient";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-interface Params {
-  params: {
-    groupId: string;
-  };
-}
-
-export async function GET(req: NextRequest, { params }: Params) {
+export async function GET(req: NextRequest) {
   try {
-    const { groupId } = params;
+    // Extract groupId from request URL
+    const url = new URL(req.url);
+    const segments = url.pathname.split("/");
+    const groupId = segments[segments.length - 1]; // Get the last segment
 
     if (!groupId) {
-      return new Response(JSON.stringify({ error: "Group ID is required" }), {
-        status: 400,
-      });
+      return NextResponse.json({ error: "Group ID is required" }, { status: 400 });
     }
 
     const { data: members, error } = await supabase
@@ -24,10 +19,10 @@ export async function GET(req: NextRequest, { params }: Params) {
 
     if (error) throw error;
 
-    return new Response(JSON.stringify({ members }), { status: 200 });
-  } catch (error: any) {
-    return new Response(
-      JSON.stringify({ error: error.message || "An unexpected error occurred" }),
+    return NextResponse.json({ members }, { status: 200 });
+  } catch (error: unknown) {
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "An unexpected error occurred" },
       { status: 500 }
     );
   }
