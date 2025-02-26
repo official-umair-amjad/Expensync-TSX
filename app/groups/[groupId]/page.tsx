@@ -5,7 +5,7 @@ import ExpenseDisplay from "../../../components/CurrencyConverter";
 import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "../../../context/AuthContext";
 import { supabase } from "../../../utils/supabaseClient";
-import { Trash, Edit2, Plus, Ellipsis } from "lucide-react";
+import { Trash, Edit2, Plus } from "lucide-react";
 
 // Define types for our data
 type Group = {
@@ -119,10 +119,12 @@ export default function GroupDetails() {
         throw new Error("Failed to fetch group members");
       }
       const data = await response.json();
-      setGroupMembers(data.members);
-      return data.members;
+      const members = data.members || [];
+      setGroupMembers(members);
+      return members;
     } catch (error) {
       console.error("Error fetching group members:", error);
+      setGroupMembers([]);
       return [];
     }
   };
@@ -147,11 +149,10 @@ export default function GroupDetails() {
     }
   };
 
-
   // Combine user IDs from expenses and group members for a complete list.
   const fetchUserDetails = async (expenses: Expense[], members: GroupMember[]) => {
     const expenseUserIds = expenses.map((exp) => exp.user_id);
-    const memberUserIds = members.map((member) => member.user_id);
+    const memberUserIds = (members || []).map((member) => member.user_id);
     const userIds = [...new Set([...expenseUserIds, ...memberUserIds])];
 
     const { data, error } = await supabase
@@ -307,7 +308,6 @@ export default function GroupDetails() {
           {/* Top row with total expense & group members */}
           <div className="flex gap-2 mb-2">
             <ExpenseDisplay totalExpense={totalExpense} />
-
           </div>
 
           <h3 className="text-md font-semibold border-b">Expenses</h3>
@@ -354,24 +354,29 @@ export default function GroupDetails() {
               ))}
             </ul>
           )}
-          <h3 className="text-md font-semibold mt-2 border-b">Expenses</h3>
+
+          {/* Group Members Section */}
+          <h3 className="text-md font-semibold mt-2 border-b">Group Members</h3>
           <div className="flex flex-wrap gap-2 mt-2">
-            {groupMembers.map((member) => {
+            {(groupMembers || []).map((member) => {
               const userObj = userDetails[member.user_id];
+              console.log("member",member.user_id)
               return (
                 <div
                   key={member.user_id}
-                  className="relative bg-white text-xs h-min wrap text-black md:p-1 p-2 rounded shadow"
+                  className="relative bg-white text-xs h-min p-2 rounded shadow"
                 >
                   <div className="flex items-center justify-between">
                     <p className="font-bold text-lg text-indigo-500">
                       ${userExpenseCount[member.user_id] || 0}
                     </p>
-                    {group && user.id === group.admin_id && (
+                    {group && user?.id === group.admin_id && (
                       <button
-                      onClick={() => {
-                        alert(`In new docs, deleting is not required. so just displaying the: ${member.user_id}`);
-                      }}
+                        onClick={() => {
+                          alert(
+                            `In new docs, deleting is not required. so just displaying the: ${member.user_id}`
+                          );
+                        }}
                       >
                         <Trash size={12} color="red" />
                       </button>
@@ -396,7 +401,7 @@ export default function GroupDetails() {
                   placeholder="Enter user email"
                   value={email}
                   onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                  className="border p-2 w-full rounded validate"
+                  className="border p-2 w-full rounded"
                 />
                 <button
                   onClick={inviteUser}
@@ -418,8 +423,8 @@ export default function GroupDetails() {
                     key === "amount"
                       ? "number"
                       : key === "date"
-                        ? "date"
-                        : "text"
+                      ? "date"
+                      : "text"
                   }
                   placeholder={key}
                   value={newExpense[key as keyof Expense] as string | number}
@@ -471,7 +476,7 @@ export default function GroupDetails() {
                     placeholder="Enter user email"
                     value={email}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                    className="border p-2 w-full rounded validate"
+                    className="border p-2 w-full rounded"
                   />
                   <button
                     onClick={inviteUser}
@@ -495,8 +500,8 @@ export default function GroupDetails() {
                       key === "amount"
                         ? "number"
                         : key === "date"
-                          ? "date"
-                          : "text"
+                        ? "date"
+                        : "text"
                     }
                     placeholder={key}
                     value={newExpense[key as keyof Expense] as string | number}
