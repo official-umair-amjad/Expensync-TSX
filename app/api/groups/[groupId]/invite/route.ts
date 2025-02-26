@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
     // Extract groupId from the request URL
     const url = new URL(req.url);
     const segments = url.pathname.split("/");
-    const groupId = segments[segments.length - 1]; // Get the last segment
+    const groupId = segments[segments.length - 2]; // Get the last segment
 
     if (!groupId) {
       return NextResponse.json(
