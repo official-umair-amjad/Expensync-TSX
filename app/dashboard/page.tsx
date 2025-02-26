@@ -50,8 +50,16 @@ export default function Dashboard() {
     }
 
     setGroups(
-      (data as Membership[]).map((entry) => entry.groups).filter((group) => group)
-    );
+      data
+        .map((entry) => {
+          if (!entry.groups || !Array.isArray(entry.groups)) return null;
+          return entry.groups.filter((group): group is Group =>
+            group && typeof group.id === "string" && typeof group.name === "string"
+          );
+        })
+        .flat() // Flatten the nested arrays
+        .filter(Boolean) // Remove null/undefined values
+    );;
   };
 
   const handleAddGroup = async (e: React.FormEvent) => {
