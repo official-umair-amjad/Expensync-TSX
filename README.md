@@ -1,7 +1,7 @@
 # Expensync-TSX
 
 Expensync-TSX is a modern expense tracking application built with Next.js 15+ and TypeScript. The project features a clean UI, API routes integrated with Supabase, and a responsive design optimized for both desktop and mobile devices.
-
+Project is LIVE @ https://expensync-tsx.vercel.app/
 ## Screenshots
 
 Below are three screenshots demonstrating different parts of the app:
@@ -20,12 +20,14 @@ Follow these steps to run the project on your local machine:
    git clone https://github.com/your-username/Expensync-TSX.git
    cd Expensync-TSX
    ```
-2.**Install dependencies:**
+
+2. **Install dependencies:**
 
    ```bash
    npm install
    ```
-3.**Set up environment variables:**
+
+3. **Set up environment variables:**
 
 Create a .env.local file in the root of the project and add your Supabase credentials along with any other necessary variables. For example:
 env
