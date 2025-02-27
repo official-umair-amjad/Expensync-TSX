@@ -1,0 +1,9 @@
+# supabase url
+NEXT_PUBLIC_SUPABASE_URL=https://fivunbmdbqhecohhhpnk.supabase.co
+
+# supabase anon
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpdnVuYm1kYnFoZWNvaGhocG5rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAxNTg4NjgsImV4cCI6MjA1NTczNDg2OH0.WdU7DQALJOVXoW0yLeujH3RRekKGiEjMWIYNycxRsds
+
+
+# supabase url
+NEXT_PUBLIC_OER_APP_ID=002bdf005dfa43628484a928e2a98613
