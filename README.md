@@ -16,7 +16,7 @@ Below are three screenshots demonstrating different parts of the app:
 
 Follow these steps to run the project on your local machine:
 
-   github not allow to upload .env.example file copy env-variable.txt to any .env file to use same project
+      github not allow to upload .env.example file copy env-variable.txt to any .env file to use same project
 
 1. **Clone the repository:**
 
