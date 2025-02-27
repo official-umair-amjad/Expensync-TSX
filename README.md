@@ -13,8 +13,8 @@ Below are three screenshots demonstrating different parts of the app:
 ![Mobile View / Add Expense](/public/ss3.PNG)
 
 **Video Preview**
-![Group Details Screen](https://youtu.be/XUbUSEw5WxI?si=iTodXO6emDopbe7e)
 
+https://youtu.be/XUbUSEw5WxI?si=iTodXO6emDopbe7e
 
 ## Local Setup
 
