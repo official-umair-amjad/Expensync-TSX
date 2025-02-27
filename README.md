@@ -12,6 +12,10 @@ Below are three screenshots demonstrating different parts of the app:
 ![Group Details Screen](/public/ss2.PNG)
 ![Mobile View / Add Expense](/public/ss3.PNG)
 
+**Video Preview**
+![Group Details Screen](https://youtu.be/XUbUSEw5WxI?si=iTodXO6emDopbe7e)
+
+
 ## Local Setup
 
 Follow these steps to run the project on your local machine:
